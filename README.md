@@ -1,0 +1,1 @@
+This is a sample java application that runs in docker.
