@@ -14,7 +14,7 @@ public class App {
         server.createContext("/", new HttpHandler() {
             @Override
             public void handle(HttpExchange exchange) throws IOException {
-                String response = "{\"status\": \"success\", \"message\": \"Hello from Java inside Docker!\"}";
+                String response = "{\"status\": \"success\", \"message\": \"Hello from Java inside Docker!!!\"}";
                 exchange.getResponseHeaders().set("Content-Type", "application/json");
                 exchange.sendResponseHeaders(200, response.getBytes().length);
                 
