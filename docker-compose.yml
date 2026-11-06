@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  java-app:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 15s      # Run health check every 15 seconds
+      timeout: 5s        # Fail if no response within 5 seconds
+      retries: 3         # Mark unhealthy after 3 consecutive failures
+      start_period: 10s  # Grace period for app startup
