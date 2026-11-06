@@ -8,7 +8,10 @@ import java.net.InetSocketAddress;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        int port = 8080;
+        // Read PORT from environment variable, default to 8080 if not set
+        String envPort = System.getenv("PORT");
+        int port = (envPort != null && !envPort.isEmpty()) ? Integer.parseInt(envPort) : 8080;
+
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         
         // Main Application Context

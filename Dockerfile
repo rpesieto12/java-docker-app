@@ -9,9 +9,9 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=builder /app/bin ./bin
 
-# Configure Docker runtime health check
-HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:8080/health || exit 1
+# Dynamically query the internal port set by $PORT
+HEALTHCHECK --interval=10s --timeout=5s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:${PORT}/health || exit 1
 
 EXPOSE 8080
 
